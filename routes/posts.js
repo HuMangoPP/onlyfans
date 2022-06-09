@@ -5,8 +5,15 @@ const Post = require('../models/Post');
 
 /** GET */
 // posts
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     res.send('you are on posts');
+});
+
+// posts/:id 
+router.get('/:id', async (req, res) => {
+    const post = await Post.findById(req.params.id);
+    res.json(post);
+    res.status(200);
 });
 
 /** POST */
@@ -29,10 +36,10 @@ router.post('/', async (req, res) => {
 /** PUT */
 // posts
 router.put('/:id', async (req, res) => {
-    const updatedPost = new Post({
+    const updatedPost = {
         title: req.body.title,
         description: req.body.description
-    });
+    };
     try {
         await Post.findByIdAndUpdate(req.params.id, updatedPost);
         res.json(updatedPost);
