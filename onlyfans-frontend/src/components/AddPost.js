@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const AddPost = ({onAdd}) => {
+const AddPost = ({ onAdd }) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 

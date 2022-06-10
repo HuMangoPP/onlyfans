@@ -1,13 +1,15 @@
 import Post from './Post'
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, onExpand, onCollapse}) => {
     
     const displayPosts = posts.slice(0).reverse()
 
     return (
         <>
             {displayPosts.map((post) => (
-                <Post key={post.id} post={post} />
+                <Post key={post.id} post={post} 
+                onExpand={onExpand} 
+                onCollapse={onCollapse}/>
             ))}
         </>
     )
