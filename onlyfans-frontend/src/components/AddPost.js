@@ -3,6 +3,7 @@ import { useState } from 'react'
 const AddPost = ({ onAdd }) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
+    const [image, setImage] = useState('')
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -16,7 +17,7 @@ const AddPost = ({ onAdd }) => {
             return
         }
         
-        onAdd({title,description})
+        onAdd({title,description,image})
 
         setTitle('')
         setDescription('')
@@ -33,6 +34,7 @@ const AddPost = ({ onAdd }) => {
                 value={title} 
                 onChange={(e) => setTitle(e.target.value)}/>
             </div>
+
             <div className='form-control'>
                 <label>Post Description</label>
                 <input type='description' 
@@ -40,9 +42,13 @@ const AddPost = ({ onAdd }) => {
                 value={description} 
                 onChange={(e) => setDescription(e.target.value)}/>
             </div>
+
             <div>
-                <input type='file' name='image' />
+                <input 
+                type='file' 
+                />
             </div>
+
             <input type='submit' 
             value='Save Post' 
             className = 'btn btn-block'/>

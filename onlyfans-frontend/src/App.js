@@ -21,7 +21,8 @@ function App() {
   const addPost = async (post) => {
     const newPost = {
       title: post.title,
-      description: post.description
+      description: post.description,
+      image: post.file
     }
     const result = await fetch('/posts/all', {
       method: "POST",
@@ -47,7 +48,9 @@ function App() {
     <div className="container">
       <Header onAdd={() => setShowAddPost(!showAddPost)} 
       showAdd={showAddPost}/>
+
       {showAddPost && <AddPost onAdd={addPost}/>}
+
       <Posts posts={ backendPosts } 
       onExpand={expandImage} 
       onCollapse={collapseImage}/>
