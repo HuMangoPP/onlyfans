@@ -1,6 +1,7 @@
 const express = require('express');
 const Joi = require('joi')
 const mongoose = require('mongoose');
+const request = require('request')
 require('dotenv/config')
 
 // import routes
@@ -96,7 +97,7 @@ function validateCourse(course) {
 }
 
 // PORT
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`)
 })
