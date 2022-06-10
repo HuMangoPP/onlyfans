@@ -2,6 +2,19 @@ const express = require('express');
 const { Model } = require('mongoose');
 const router = express.Router();
 const Post = require('../models/Post');
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null,'./images');
+    },
+    filename: (req, file, cb) => {
+        console.log(file);
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+}) 
+const upload = multer({storage: storage});
 
 /** GET */
 // posts
@@ -22,7 +35,7 @@ router.get('/:id', async (req, res) => {
 
 /** POST */
 // posts
-router.post('/all', async (req, res) => {
+router.post('/all', upload.single("image"), async (req, res) => {
     const post = new Post({
         title: req.body.title,
         description: req.body.description

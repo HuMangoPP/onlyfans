@@ -1,4 +1,5 @@
 .env
 **/node_modules
+**/images
 comments.js
 Comment.js

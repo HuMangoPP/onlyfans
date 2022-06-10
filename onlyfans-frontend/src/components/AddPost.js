@@ -24,7 +24,8 @@ const AddPost = ({ onAdd }) => {
 
     return (
         <form className='add-form'
-        onSubmit={onSubmit}>
+        onSubmit={onSubmit}
+        encType='multipart/form-data'>
             <div className='form-control'>
                 <label>Post Title</label>
                 <input type='title' 
@@ -38,6 +39,9 @@ const AddPost = ({ onAdd }) => {
                 placeholder='Write something...' 
                 value={description} 
                 onChange={(e) => setDescription(e.target.value)}/>
+            </div>
+            <div>
+                <input type='file' name='image' />
             </div>
             <input type='submit' 
             value='Save Post' 
