@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/Header';
 import Posts from './components/Posts'
 import AddPost from './components/AddPost'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function App() {
@@ -20,25 +20,41 @@ function App() {
     }
 ])
 
-  // add post
-  const addPost = (post) => {
-    const id = Math.floor(Math.random()*10000)+1
-    const newPost = {id,...post}
-    setPosts([...posts,newPost])
-  }
+  const [backendPosts, setBackendPosts] = useState([{}])
 
-  const getPosts = () => {
-    axios.get('/posts').then(response => {
-      setPosts([response])
-      console.log(response)
+  useEffect( () => { fetch('/posts/all').then(
+        response => response.json()
+      ).then(
+        data => {
+          setBackendPosts(data)
+        }
+      )
+  }, [])
+
+  // add post
+  const addPost = async (post) => {
+    const newPost = {
+      title: post.title,
+      description: post.description
+    }
+    console.log(post)
+    const result = await fetch('/posts/all', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newPost)
     })
+
+    const jsonResult = await result.json()
+    setBackendPosts([...backendPosts, jsonResult])
   }
 
   return (
     <div className="container">
       <Header onAdd={() => setShowAddPost(!showAddPost)} showAdd={showAddPost}/>
       {showAddPost && <AddPost onAdd={addPost}/>}
-      <Posts posts={getPosts()}/>
+      <Posts posts={backendPosts}/>
     </div>
   );
 }

@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
 
 /** POST */
 // posts
-router.post('/', async (req, res) => {
+router.post('/all', async (req, res) => {
     const post = new Post({
         title: req.body.title,
         description: req.body.description

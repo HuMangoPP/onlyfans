@@ -11,6 +11,10 @@ const AddPost = ({onAdd}) => {
             alert('Please add title')
             return
         }
+        if (!description) {
+            alert('Please add description')
+            return
+        }
         
         onAdd({title,description})
 
