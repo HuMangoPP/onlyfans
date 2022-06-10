@@ -15,9 +15,9 @@ body {
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid steelblue;
+  border: 2px solid steelblue;
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .header {
@@ -55,10 +55,9 @@ body {
 }
 
 .posts {
-  background: #ececec;
+  background: #efefef;
   margin: 5px;
   padding: 10px 20px;
-  cursor: pointer;
 }
 
 .task.reminder {
