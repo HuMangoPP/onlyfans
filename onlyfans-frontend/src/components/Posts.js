@@ -1,15 +1,14 @@
-const posts = [
-    {
-        id: 1,
-        title: 'my post',
-        description: 'this is my post',
-    }
-]
+import Post from './Post'
 
-const Posts = () => {
+const Posts = ({ posts }) => {
+    
     return (
-        <div>
-
-        </div>
+        <>
+            {posts.map((post) => (
+                <Post key={post.id} post={post} />
+            ))}
+        </>
     )
 }
+
+export default Posts

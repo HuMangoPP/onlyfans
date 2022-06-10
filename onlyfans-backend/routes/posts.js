@@ -5,8 +5,12 @@ const Post = require('../models/Post');
 
 /** GET */
 // posts
-router.get('/', async (req, res) => {
-    res.send('you are on posts');
+router.get('/all', async (req, res) => {
+    Post.find().then((result) => {
+        res.json(result);
+    }).catch((err) => {
+        console.log(err);
+    });
 });
 
 // posts/:id 
