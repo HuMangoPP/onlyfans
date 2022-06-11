@@ -3,37 +3,35 @@ import Header from './components/Header';
 import Posts from './components/Posts'
 import AddPost from './components/AddPost'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function App() {
   const [showAddPost, setShowAddPost] = useState(false)
-  const [backendPosts, setBackendPosts] = useState([{}])
+  const [backendPosts, setBackendPosts] = useState([])
 
-  useEffect( () => { fetch('/posts/all').then(
-        response => response.json()
-      ).then(
-        data => {
-          setBackendPosts(data)
-        }
-      )
-  }, [])
+  useEffect( () => {
+    axios.get('http://localhost:5000/posts/all')
+      .then(res => {
+        setBackendPosts(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [backendPosts])
 
   // add post
   const addPost = async (post) => {
-    const newPost = {
-      title: post.title,
-      description: post.description,
-      image: post.file
-    }
-    const result = await fetch('/posts/all', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newPost)
-    })
-
-    const jsonResult = await result.json()
-    setBackendPosts([...backendPosts, jsonResult])
+    const fd = new FormData()
+    fd.append('title', post.title)
+    fd.append('description', post.description)
+    fd.append('image', post.image)
+    axios.post('http://localhost:5000/posts/all', fd)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   const expandImage = (id) => {

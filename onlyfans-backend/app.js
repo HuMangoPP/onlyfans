@@ -2,6 +2,7 @@ const express = require('express');
 const Joi = require('joi')
 const mongoose = require('mongoose');
 const request = require('request')
+const cors = require('cors')
 require('dotenv/config')
 
 // import routes
@@ -14,6 +15,9 @@ mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTo
 })
 
 app.use(express.json());
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
 
 // middlewares
 app.use('/posts', postsRoute);
