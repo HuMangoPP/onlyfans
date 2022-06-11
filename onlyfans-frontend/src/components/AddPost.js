@@ -45,11 +45,11 @@ const AddPost = ({ onAdd }) => {
 
             <div className='form-control'>
                 <label>Post Description</label>
-                <input type='text' 
+                <textarea 
                 name = 'description'
-                placeholder='Write something...' 
-                value={description} 
-                onChange={(e) => setDescription(e.target.value)}/>
+                placeholder='Write something...'
+                value={description}
+                onChange={(e) => setDescription(e.target.value)} />
             </div>
 
             <DragDrop setImage={setImage}/>
