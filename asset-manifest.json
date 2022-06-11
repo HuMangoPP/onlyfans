@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/onlyfans/static/css/main.e7cb9cb6.css",
+    "main.js": "/onlyfans/static/js/main.f4857652.js",
+    "static/js/787.9f5f007a.chunk.js": "/onlyfans/static/js/787.9f5f007a.chunk.js",
+    "index.html": "/onlyfans/index.html",
+    "main.e7cb9cb6.css.map": "/onlyfans/static/css/main.e7cb9cb6.css.map",
+    "main.f4857652.js.map": "/onlyfans/static/js/main.f4857652.js.map",
+    "787.9f5f007a.chunk.js.map": "/onlyfans/static/js/787.9f5f007a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e7cb9cb6.css",
+    "static/js/main.f4857652.js"
+  ]
+}
