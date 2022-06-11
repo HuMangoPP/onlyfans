@@ -52,6 +52,7 @@ function App() {
       <Posts posts={ backendPosts } 
       onExpand={expandImage} 
       onCollapse={collapseImage}/>
+
     </div>
   );
 }
