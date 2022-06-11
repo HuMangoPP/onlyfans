@@ -15,13 +15,13 @@ mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTo
 })
 
 app.use(express.json());
+app.use('/images',express.static('images'))
 app.use(cors({
     origin: 'http://localhost:3000'
 }))
 
 // middlewares
 app.use('/posts', postsRoute);
-
 // PORT
 const port = process.env.PORT || 5000
 app.listen(port, () => {

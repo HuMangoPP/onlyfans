@@ -1,5 +1,6 @@
 import { BsArrowsAngleExpand, BsArrowsAngleContract } from 'react-icons/bs'
 import { useState } from 'react'
+import PostImage from './PostImage'
 
 const Post = ({ post, onExpand, onCollapse }) => {
 
@@ -25,6 +26,7 @@ const Post = ({ post, onExpand, onCollapse }) => {
                 }}/>}
             </h3>
             <p>{post.description}</p>
+            {showImg ? <PostImage image={post.image} /> : <></>}
         </div>
     )
 }
