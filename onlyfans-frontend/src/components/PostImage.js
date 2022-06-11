@@ -2,7 +2,7 @@
 
 const PostImage = ({ image }) => {
     return (
-        <img src={image} />
+        <img className='post-image' src={image} />
     )
 }
 

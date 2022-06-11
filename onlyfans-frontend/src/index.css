@@ -60,14 +60,14 @@ body {
   padding: 10px 20px;
 }
 
-.task.reminder {
-  border-left: 5px solid green;
-}
-
 .posts h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.post-image {
+  max-width: 600px
 }
 
 .add-form {

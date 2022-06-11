@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import DragDrop from './DragDrop'
 
 const AddPost = ({ onAdd }) => {
     const [title, setTitle] = useState('')
@@ -18,12 +19,14 @@ const AddPost = ({ onAdd }) => {
         }
         if (!image) {
             alert('Please upload an image')
+            return
         }
         
         onAdd({title,description,image})
 
         setTitle('')
         setDescription('')
+        setImage(null)
     }
 
     return (
@@ -49,12 +52,7 @@ const AddPost = ({ onAdd }) => {
                 onChange={(e) => setDescription(e.target.value)}/>
             </div>
 
-            <div>
-                <input 
-                type='file' 
-                name='image'
-                onChange={(e) => setImage(e.target.files[0])}/>
-            </div>
+            <DragDrop setImage={setImage}/>
 
             <input type='submit' 
             value='Save Post' 
