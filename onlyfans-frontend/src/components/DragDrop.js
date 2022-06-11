@@ -11,6 +11,7 @@ const DragDrop = ({ setImage }) => {
 
     return (
         <FileUploader 
+        classes='drag-drop'
         handleChange= {handleChange} 
         type='file'
         name='image'
