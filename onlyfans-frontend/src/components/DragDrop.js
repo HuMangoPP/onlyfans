@@ -10,11 +10,13 @@ const DragDrop = ({ setImage }) => {
     }
 
     return (
-        <FileUploader 
-        handleChange= {handleChange} 
-        type='file'
-        name='image'
-        types={fileTypes}/>
+        <div className='drag-drop'>
+            <FileUploader 
+            handleChange= {handleChange} 
+            type='file'
+            name='image'
+            types={fileTypes}/>
+        </div>
     )
 }
 

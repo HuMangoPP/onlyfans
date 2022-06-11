@@ -55,7 +55,7 @@ const AddPost = ({ onAdd }) => {
             <DragDrop setImage={setImage}/>
 
             <input type='submit' 
-            value='Save Post' 
+            value='Post a New Fan!' 
             className = 'btn btn-block'/>
         </form>
     )

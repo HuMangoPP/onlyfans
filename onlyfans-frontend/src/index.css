@@ -67,11 +67,23 @@ body {
 }
 
 .post-image {
-  max-width: 600px
+  display: block;
+  width: 90%;
+  margin-left: auto;
+  margin-right:auto;
+  padding: 10px
 }
 
 .add-form {
   margin-bottom: 40px;
+}
+
+.drop-drop{
+  display: block;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px
 }
 
 .form-control {
