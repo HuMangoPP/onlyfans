@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script:bold');
 
 * {
   box-sizing: border-box;
@@ -10,87 +11,47 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-.container {
-  max-width: 800px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  border: 2px solid steelblue;
-  padding: 30px;
-  border-radius: 10px;
+.main-header {
+  background-color: steelblue;
+  padding: 1em;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+.webpage-name {
+  text-align: center;
+  margin: 0;
+  font-size: 5em;
+  font-weight: bold;
+  font-family: 'Dancing Script', serif;
+  color: white;
+}
+
+.new-post {
+  max-width: 800px;
+  margin: 30px auto;
+  border: 2px solid steelblue;
+  padding: 1.5em;
+  border-radius: 1em;
 }
 
 .btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
+  text-align: center;
+  vertical-align: middle;
+  padding: .5em;
   cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
-}
-
-.btn:focus {
   outline: none;
+  color: white;
 }
 
-.btn:active {
-  transform: scale(0.98);
+.post-btn {
+  margin: .5em 15% 1em 75%;
+  min-width: 8em;
+  border: none;
+  border-radius: 2em;
+  font-size: 1.25em;
 }
 
-.btn-block {
-  display: block;
-  width: 100%;
-}
-
-.posts {
-  background: #ffffff;
-  margin: 0px;
-  padding: 10px 20px;
-  width: 100%;
-  border: 2px solid steelblue;
-  border-radius: 10px;
-}
-
-.posts h3 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.post-image {
-  display: block;
-  width: 90%;
-  margin-left: auto;
-  margin-right:auto;
-  padding: 10px;
-}
-
-.posts-gap {
-  padding: 10px 0px;
-}
-
-.add-form {
-  margin-bottom: 40px;
-}
-
-.drag-drop{
-  width: 100%;
-  height: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
+.post-btn:hover {
+  filter: brightness(90%);
 }
 
 .form-control {
@@ -131,6 +92,103 @@ body {
 .form-control-check input {
   flex: 2;
   height: 20px;
+}
+
+.add-form {
+  margin-bottom: 40px;
+}
+
+.drag-drop{
+  width: 100%;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.btn-block {
+  min-width: 10em;
+  text-align: center;
+  vertical-align: auto;
+  color: white;
+  padding: 1em;
+  background-color: steelblue;
+  font-size: 1.25em;
+  border: none;
+  border-radius: 2em;
+}
+
+.btn-block:hover {
+  filter: brightness(90%);
+}
+
+.submit-btn-wrapper {
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 2px solid steelblue;
+  padding: 30px;
+  border-radius: 1em;
+}
+
+.posts {
+  margin: 0px;
+  padding: 10px 20px;
+  width: 100%;
+  border: 2px solid steelblue;
+  border-radius: 1em;
+}
+
+.posts h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-image {
+  display: block;
+  width: 90%;
+  margin-left: auto;
+  margin-right:auto;
+  padding: 10px;
+}
+
+.posts-gap {
+  padding: 10px 0px;
+}
+
+.comments-container {
+  margin: 1em;
+  padding: 1em;
+  border: 2px solid steelblue;
+  border-radius: 1em;
+}
+
+.comments-header h4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-block {
+  border-top: 1px solid steelblue;
+  padding: .5em 0;
+  margin-top: .5em;
+}
+
+.clickable-icons {
+  padding: .5em;
+  vertical-align: auto;
+  border-radius: 10%;
+}
+
+.clickable-icons:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 footer {

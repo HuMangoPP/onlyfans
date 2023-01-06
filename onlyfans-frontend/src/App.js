@@ -1,5 +1,6 @@
 import './App.css';
 import Header from './components/Header';
+import Button from './components/Button'
 import Posts from './components/Posts'
 import AddPost from './components/AddPost'
 import { useState, useEffect } from 'react'
@@ -9,23 +10,34 @@ function App() {
   const [showAddPost, setShowAddPost] = useState(false)
   const [backendPosts, setBackendPosts] = useState([])
 
-  useEffect( () => {
-    axios.get('http://localhost:5000/posts/all')
-      .then(res => {
-        setBackendPosts(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+  const instance = axios.create({
+    baseURL: 'http://localhost:5000/api'
+  })
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const request = await instance.get('/posts')
+      console.log(request)
+      setBackendPosts(request.data.posts)
+      return request
+    }
+    fetchPosts()
   }, [backendPosts])
+
 
   // add post
   const addPost = async (post) => {
+    // const fd = {
+    //   title: post.title,
+    //   description: post.description,
+    //   image: post.image
+    // }
     const fd = new FormData()
     fd.append('title', post.title)
     fd.append('description', post.description)
     fd.append('image', post.image)
-    axios.post('http://localhost:5000/posts/all', fd)
+    console.log(post)
+    instance.post('/posts', fd)
       .then(res => {
         console.log(res)
       })
@@ -43,17 +55,20 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <Header onAdd={() => setShowAddPost(!showAddPost)} 
-      showAdd={showAddPost}/>
+    <>
+      <Header />
 
-      {showAddPost && <AddPost onAdd={addPost}/>}
+      <section className='new-post'>
+        <Button color={showAddPost ? 'grey' : 'steelblue'} text={showAddPost ? 'Close' : 'Create Post'} onClick={() => setShowAddPost(!showAddPost)}/>  
+        {showAddPost && <AddPost onAdd={addPost}/>}
+      </section>
+      <div className="container">
 
-      <Posts posts={ backendPosts } 
-      onExpand={expandImage} 
-      onCollapse={collapseImage}/>
-
-    </div>
+        <Posts posts={ backendPosts } 
+        onExpand={expandImage} 
+        onCollapse={collapseImage}/>
+      </div>
+    </>
   );
 }
 

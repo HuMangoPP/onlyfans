@@ -35,16 +35,16 @@ const AddPost = ({ onAdd }) => {
         onSubmit={onSubmit}
         encType='multipart/form-data'>
             <div className='form-control'>
-                <label>Post Title</label>
+                <label></label>
                 <input type='text' 
                 name = 'title'
-                placeholder='Make a Post!' 
+                placeholder='Title' 
                 value={title} 
                 onChange={(e) => setTitle(e.target.value)}/>
             </div>
 
             <div className='form-control'>
-                <label>Post Description</label>
+                <label></label>
                 <textarea 
                 name = 'description'
                 placeholder='Write something...'
@@ -53,10 +53,11 @@ const AddPost = ({ onAdd }) => {
             </div>
 
             <DragDrop setImage={setImage}/>
-
-            <input type='submit' 
-            value='Post a New Fan!' 
-            className = 'btn btn-block'/>
+            <div className="submit-btn-wrapper">
+                <input type='submit' 
+                value='Post!' 
+                className = 'btn btn-block'/>
+            </div>
         </form>
     )
 }
