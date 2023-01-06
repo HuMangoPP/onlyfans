@@ -1,96 +1,66 @@
-const express = require('express');
-const { Model } = require('mongoose');
-const router = express.Router();
-const Post = require('../models/Post');
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs')
+const express = require('express')
+const router = express.Router()
+const {getAllPosts, getPost, createPost, updatePost, deletePost, getPostComments, createComment} = require('../controllers/posts')
+const multer = require('multer')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null,'./images');
+        cb(null,'./images/')
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + file.originalname);
+        cb(null, `${Date.now()}-${file.originalname}`);
     }
 }) 
 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-        cb(null, true);
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/gif') {
+        cb(null, true)
     } else {
-        cb(null, false);
+        cb(null, false)
     }
 };
 
 const upload = multer({
     storage: storage,
-    fileFilter: fileFilter
-});
+    fileFilter,
+})
+
 
 /** GET */
 // posts
-router.get('/all', async (req, res) => {
-    Post.find().then((result) => {
-        res.json(result);
-    }).catch((err) => {
-        console.log(err);
-    });
+router.get('/', async (req, res) => {
+    return getAllPosts(req, res)
 });
 
 // posts/:id 
 router.get('/:id', async (req, res) => {
-    const post = await Post.findById(req.params.id);
-    res.json(post);
-    res.status(200);
+    return getPost(req, res)
 });
+
+router.get('/:id/comments', async (req, res) => {
+    return getPostComments(req, res)
+})
 
 /** POST */
 // posts
-router.post('/all', upload.single("image"), async (req, res) => {
-    const post = new Post({
-        title: req.body.title,
-        description: req.body.description,
-        image: req.file.path
-    });
-    try {
-        await post.save()
-        res.json(post);
-        res.status(200);
-    } catch(err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
+router.post('/', upload.single("image"), async (req, res) => {
+    return createPost(req, res)
 });
 
-/** PUT */
+router.post('/:id', async(req, res) => {
+    return createComment(req, res)
+})
+
+/** PATCH */
 // posts
-router.put('/:id', async (req, res) => {
-    const updatedPost = {
-        title: req.body.title,
-        description: req.body.description
-    };
-    try {
-        await Post.findByIdAndUpdate(req.params.id, updatedPost);
-        res.json(updatedPost);
-        res.status(200);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err)
-    }
+router.patch('/:id', async (req, res) => {   
+    return updatePost(req, res)
 });
 
 /** DELETE */
 // posts
 router.delete('/:id', async (req, res) => {
-    try {
-        const post = await Post.findByIdAndRemove(req.params.id);
-        res.json(post);
-        res.status(200);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
+    return deletePost(req, res)
 });
 
 module.exports = router;
